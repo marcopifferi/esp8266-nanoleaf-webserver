@@ -18,12 +18,12 @@
 
 
 //-----------------------------------------CONFIG-----------------------------------------//
-#define LEAFCOUNT 12
-#define PIXELS_PER_LEAF 12
+#define LEAFCOUNT 3
+#define PIXELS_PER_LEAF 3
 
-#define DATA_PIN      D4          // The pin where the data line is connected to
+#define DATA_PIN  D6         // The pin where the data line is connected to
 #define LED_TYPE      WS2812B
-#define COLOR_ORDER   GRB         // Color order, if e.g. your Colors are swapped then change the order, (RGB, RBG, GBR, GRB, BRG, BGR)
+#define COLOR_ORDER   RGB         // Color order, if e.g. your Colors are swapped then change the order, (RGB, RBG, GBR, GRB, BRG, BGR)
 
 #define MILLI_AMPS         3000  // IMPORTANT: set the max milli-Amps of your power supply (4A = 4000mA)
 #define FRAMES_PER_SECOND  120    // here you can control the speed. With the Access Point / Web Server the animations run a bit slower.
@@ -53,6 +53,8 @@ uint8_t speed = 20;
 //#define FASTLED_ALLOW_INTERRUPTS 1
 //#define INTERRUPT_THRESHOLD 1
 #define FASTLED_INTERRUPT_RETRY_COUNT 0
+#define FASTLED_ESP8266_D1_PIN_ORDER
+
 
 #include <FastLED.h>
 FASTLED_USING_NAMESPACE
@@ -317,7 +319,6 @@ void setup() {
     Serial.printf("Connecting to %s\n", ssid);
     if (String(WiFi.SSID()) != String(ssid)) {
       WiFi.begin(ssid, password);
-      WiFi.hostname("Nanoleaf");
     }
   }
 
